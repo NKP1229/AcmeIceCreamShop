@@ -28,10 +28,6 @@ const App = () => {
       console.error(error);
     }
   }
-  async function updateFlavor(id) {
-    setIsUpdating(true);
-    goBack();
-  }
   async function deleteFlavor(id) {
     try {
       const response = await axios.delete(`/api/flavors/${id}`);
@@ -57,7 +53,12 @@ const App = () => {
   async function updateFlavor(event) {
     event.preventDefault();
     try {
-      setIsUpdating(true);
+      const id = selectedFlavor.id;
+      const response = await axios.put(`/api/flavors/${id}`, {
+        is_favorite: isFavorite,
+      });
+      setIsUpdating(false);
+      getDetails(id);
     } catch (error) {
       console.error(error);
       setIsUpdating(false);
