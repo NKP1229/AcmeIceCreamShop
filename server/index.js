@@ -31,8 +31,8 @@ app.get("/api/flavors/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const SQL = `
-        SELECT FROM flavors WHERE id = $1      
-    `;
+          SELECT * FROM flavors WHERE id = $1      
+      `;
     const response = await client.query(SQL, [id]);
     res.status(200).json(response.rows);
   } catch (error) {

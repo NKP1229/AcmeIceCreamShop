@@ -5,6 +5,7 @@ import axios from "axios";
 const App = () => {
   const [flavors, setFlavors] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedFlavor, setSelectedFlavor] = useState({});
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -15,6 +16,15 @@ const App = () => {
     fetchEmployees();
   }, []);
 
+  async function getDetails(id) {
+    try {
+      const response = await axios.get(`/api/flavors/${id}`);
+      console.log(response.data[0]);
+      setSelectedFlavor(response.data[0]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   if (isLoading) {
     return <section className="loading">Loading</section>;
   }
@@ -32,6 +42,9 @@ const App = () => {
                 (FAVORITE)
               </span>
             ) : null}
+            <button className="details" onClick={() => getDetails(flavor.id)}>
+              Details
+            </button>
           </li>
         ))}
       </ul>
