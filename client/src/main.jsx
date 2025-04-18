@@ -18,7 +18,7 @@ const App = () => {
       setIsLoading(false);
     };
     fetchEmployees();
-  }, [isAdding, isUpdating]);
+  }, [isAdding, isUpdating, selectedFlavor]);
 
   async function getDetails(id) {
     try {
@@ -33,8 +33,9 @@ const App = () => {
     goBack();
   }
   async function deleteFlavor(id) {
-    console.log(id);
     try {
+      const response = await axios.delete(`/api/flavors/${id}`);
+      setSelectedFlavor(null);
     } catch (error) {
       console.error(error);
     }

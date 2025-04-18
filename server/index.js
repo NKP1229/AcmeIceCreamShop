@@ -55,7 +55,7 @@ app.delete("/api/flavors/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const SQL = `
-          DELETE FROM users WHERE id = $1
+          DELETE FROM flavors WHERE id = $1
       `;
     await client.query(SQL, [id]);
     res.sendStatus(204);
@@ -68,7 +68,7 @@ app.put("/api/flavors/:id", async (req, res, next) => {
     const { id } = req.params;
     const { is_favorite } = req.body;
     const SQL = `
-              UPDATE users
+              UPDATE flavors
               SET is_favorite = $1 
               where id = $2
               RETURNING *
