@@ -30,6 +30,13 @@ const App = () => {
     setIsUpdating(true);
     goBack();
   }
+  async function deleteFlavor(id) {
+    console.log(id);
+    try {
+    } catch (error) {
+      console.error(error);
+    }
+  }
   function goBack() {
     setSelectedFlavor(null);
   }
@@ -42,7 +49,15 @@ const App = () => {
         <h1>
           <b>Selected Flavor:</b>
         </h1>
-        <h2>{selectedFlavor.name}</h2>
+        <h2>
+          {selectedFlavor.name}
+          <button
+            className="details"
+            onClick={() => deleteFlavor(selectedFlavor.id)}
+          >
+            delete
+          </button>
+        </h2>
         {selectedFlavor.is_favorite ? (
           <span style={{ paddingLeft: "1rem", color: "red" }}>(FAVORITE)</span>
         ) : (

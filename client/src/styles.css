@@ -14,8 +14,8 @@ main {
   height: 60%;
   width: 40%;
   text-align: center;
-  border: 1px solid grey;
-  border-radius: 10px;
+  border: 2px solid grey;
+  border-radius: 30% 3%;
 }
 h1 {
   font-family: Jazz LET, fantasy;
