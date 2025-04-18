@@ -43,7 +43,7 @@ app.post("/api/flavors", async (req, res, next) => {
   try {
     const { name, is_favorite } = req.body;
     const SQL = `
-            INSERT INTO users(name, is_favorite) VALUES($1, $2) RETURNING *
+            INSERT INTO flavors(name, is_favorite) VALUES($1, $2) RETURNING *
         `;
     const response = await client.query(SQL, [name, is_favorite]);
     res.status(201).json(response.rows);

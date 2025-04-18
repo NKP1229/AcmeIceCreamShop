@@ -8,6 +8,8 @@ const App = () => {
   const [selectedFlavor, setSelectedFlavor] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [flavorName, setFlavorName] = useState("");
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -33,6 +35,19 @@ const App = () => {
   async function deleteFlavor(id) {
     console.log(id);
     try {
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async function addFlavor(event) {
+    event.preventDefault();
+    try {
+      console.log("new flavor: ", flavorName, isFavorite);
+      const response = await axios.post("/api/flavors", {
+        name: flavorName,
+        is_favorite: isFavorite,
+      });
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -107,12 +122,24 @@ const App = () => {
         <h1>
           <b>Add New Flavor:</b>
         </h1>
-        <form>
+        <form onSubmit={addFlavor}>
           <div className="formDiv">
-            <input type="text" className="textInput" placeholder="Flavor" />
+            <input
+              type="text"
+              name="flavorName"
+              value={flavorName}
+              onChange={(e) => setFlavorName(e.target.value)}
+              className="textInput"
+              placeholder="Flavor"
+            />
           </div>
           <div className="formDiv">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              name="flavorFavorite"
+              value={isFavorite}
+              onChange={(e) => setIsFavorite(e.target.checked)}
+            />
             <label>favorite?</label>
           </div>
           <button className="details" type="submit">
