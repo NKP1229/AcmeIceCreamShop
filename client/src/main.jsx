@@ -18,7 +18,7 @@ const App = () => {
       setIsLoading(false);
     };
     fetchEmployees();
-  }, []);
+  }, [isAdding, isUpdating]);
 
   async function getDetails(id) {
     try {
@@ -47,9 +47,10 @@ const App = () => {
         name: flavorName,
         is_favorite: isFavorite,
       });
-      console.log(response.data);
+      setIsAdding(false);
     } catch (error) {
       console.error(error);
+      setIsAdding(false);
     }
   }
   function goBack() {
