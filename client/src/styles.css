@@ -28,6 +28,13 @@ h4 {
 ul {
   font-family: cursive;
   list-style-type: none;
+  button {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+  }
+  button:hover {
+    border: 0.5px solid white;
+  }
 }
 .loading {
   background-color: dodgerBlue;

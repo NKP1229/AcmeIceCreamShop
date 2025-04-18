@@ -75,6 +75,7 @@ const App = () => {
         </h3>
         <div>
           <button
+            className="details"
             onClick={() => {
               goBack();
             }}
