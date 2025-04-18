@@ -7,6 +7,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFlavor, setSelectedFlavor] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -25,9 +26,12 @@ const App = () => {
       console.error(error);
     }
   }
+  async function updateFlavor(id) {
+    setIsUpdating(true);
+    goBack();
+  }
   function goBack() {
     setSelectedFlavor(null);
-    console.log("set to null");
   }
   if (isLoading) {
     return <section className="loading">Loading</section>;
@@ -45,7 +49,15 @@ const App = () => {
           <h4>NOT the Favorite.</h4>
         )}
         <h3>Added: {selectedFlavor.created_at}</h3>
-        <h3>Updated: {selectedFlavor.updated_at}</h3>
+        <h3>
+          Updated: {selectedFlavor.updated_at}
+          <button
+            className="details"
+            onClick={() => updateFlavor(selectedFlavor.id)}
+          >
+            update
+          </button>
+        </h3>
         <div>
           <button
             onClick={() => {
@@ -55,6 +67,18 @@ const App = () => {
             back
           </button>
         </div>
+      </main>
+    );
+  }
+  if (isUpdating) {
+    return (
+      <main>
+        <h1>
+          <b>Update Flavor:</b>
+          <button className="details" onClick={() => setIsUpdating(false)}>
+            back
+          </button>
+        </h1>
       </main>
     );
   }
