@@ -54,13 +54,48 @@ const App = () => {
       setIsAdding(false);
     }
   }
+  async function updateFlavor(event) {
+    event.preventDefault();
+    try {
+      setIsUpdating(true);
+    } catch (error) {
+      console.error(error);
+      setIsUpdating(false);
+    }
+  }
   function goBack() {
     setSelectedFlavor(null);
   }
   if (isLoading) {
     return <section className="loading">Loading</section>;
   }
-  if (selectedFlavor) {
+  if (isUpdating) {
+    return (
+      <main>
+        <button className="details right" onClick={() => setIsUpdating(false)}>
+          back
+        </button>
+        <h1>
+          <b>Update Flavor:</b>
+        </h1>
+        <form onSubmit={updateFlavor}>
+          <div className="formDiv">{selectedFlavor.name}</div>
+          <div className="formDiv">
+            <input
+              type="checkbox"
+              name="flavorFavorite"
+              value={isFavorite}
+              onChange={(e) => setIsFavorite(e.target.checked)}
+            />
+            <label>favorite?</label>
+          </div>
+          <button className="details" type="submit">
+            Submit
+          </button>
+        </form>
+      </main>
+    );
+  } else if (selectedFlavor) {
     return (
       <main>
         <h1>
@@ -83,10 +118,7 @@ const App = () => {
         <h3>Added: {selectedFlavor.created_at}</h3>
         <h3>
           Updated: {selectedFlavor.updated_at}
-          <button
-            className="details"
-            onClick={() => updateFlavor(selectedFlavor.id)}
-          >
+          <button className="details" onClick={() => setIsUpdating(true)}>
             update
           </button>
         </h3>
@@ -100,18 +132,6 @@ const App = () => {
             back
           </button>
         </div>
-      </main>
-    );
-  }
-  if (isUpdating) {
-    return (
-      <main>
-        <h1>
-          <b>Update Flavor:</b>
-          <button className="details" onClick={() => setIsUpdating(false)}>
-            back
-          </button>
-        </h1>
       </main>
     );
   }

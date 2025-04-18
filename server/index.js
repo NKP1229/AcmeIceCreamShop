@@ -69,7 +69,7 @@ app.put("/api/flavors/:id", async (req, res, next) => {
     const { is_favorite } = req.body;
     const SQL = `
               UPDATE flavors
-              SET is_favorite = $1 
+              SET is_favorite = $1, updated_at = TIMESTAMP DEFAULT now()
               where id = $2
               RETURNING *
           `;
