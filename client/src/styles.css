@@ -19,6 +19,8 @@ main {
 }
 h1 {
   font-family: Jazz LET, fantasy;
+  padding: 15px;
+  margin: 15px;
 }
 h2,
 h3,
@@ -43,4 +45,19 @@ ul {
 .details {
   margin: 5px 5px;
   padding: 5px 5px;
+}
+form {
+  border: 0.5px solid grey;
+  border-radius: 30% 10%;
+  margin: 2% 10%;
+  padding: 15%;
+}
+.right {
+  float: right;
+}
+.formDiv {
+  margin: 8%;
+}
+.textInput {
+  padding: 2% 5%;
 }

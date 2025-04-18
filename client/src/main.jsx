@@ -101,12 +101,24 @@ const App = () => {
   if (isAdding) {
     return (
       <main>
+        <button className="details right" onClick={() => setIsAdding(false)}>
+          back
+        </button>
         <h1>
           <b>Add New Flavor:</b>
-          <button className="details" onClick={() => setIsAdding(false)}>
-            back
-          </button>
         </h1>
+        <form>
+          <div className="formDiv">
+            <input type="text" className="textInput" placeholder="Flavor" />
+          </div>
+          <div className="formDiv">
+            <input type="checkbox" />
+            <label>favorite?</label>
+          </div>
+          <button className="details" type="submit">
+            Submit
+          </button>
+        </form>
       </main>
     );
   }
